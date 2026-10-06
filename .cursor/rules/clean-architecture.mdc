@@ -1,0 +1,36 @@
+---
+description: Clean Architecture — camadas domain / data / presentation / app
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Clean Architecture
+
+Mapa visual: `specs/architecture.md`.
+
+## Pastas
+
+- `src/domain/` — tipos, use cases, ports. Sem React, fetch, SecureStore.
+- `src/data/` — implementa ports; HTTP, storage, env.
+- `src/presentation/` — ViewModels + componentes de UI.
+- `src/app/` — só rotas Expo Router (composição).
+
+## Dependências
+
+```text
+app / presentation → domain ← data
+```
+
+- Domain **não** importa `@/data` nem `@/presentation` nem `react-native`.
+- Data **não** importa ViewModels nem telas.
+- Telas não chamam API direto — passam pelo ViewModel / use case.
+
+## Exemplo
+
+```ts
+// ✅ domain calcula
+export function calculateConsumedPercent(used: number, limit: number): number { ... }
+
+// ❌ domain não faz isto
+await fetch('https://...')
+```
