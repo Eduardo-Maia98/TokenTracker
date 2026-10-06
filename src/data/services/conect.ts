@@ -9,7 +9,7 @@ import { httpClient } from '@/data/http/client';
  * @example
  * const usage = await Conect.get<UsageDto>('/v1/usage');
  */
-export namespace Connect {
+export namespace Conect {
   export async function get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
     const response = await httpClient.get<T>(url, config);
     return response.data;
