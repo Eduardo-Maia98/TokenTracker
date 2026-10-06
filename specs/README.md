@@ -15,6 +15,7 @@ Este diretório fica fora de `src/` — processo e produto separados do código.
 | `features/001-.../` | Spec → plan → tasks (tokens Cursor) |
 | `features/002-configure-libraries/` | Axios, Async Storage, NativeWind, TanStack Query |
 | `features/003-remove-expo-template/` | Limpeza do starter Expo em `src/` |
+| `features/004-tab-bar-cursor-connect/` | Tab bar Connect/Tokens + conexão Cursor via session token |
 | `templates/` | Modelos para novas features |
 
 Fora de `specs/`, o agente também segue:
