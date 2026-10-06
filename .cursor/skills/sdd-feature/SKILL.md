@@ -15,10 +15,12 @@ description: >-
 3. Só então `plan.md` (como / pastas / riscos).
 4. Só então `tasks.md` (checklist pequena).
 5. Implementar com skill **tdd** no domain.
+6. Entregar com skill **git-branch-pr**: branch `{short}/TT-{NNN}-{slug}`, commits/PR `{type}(TT-NNN): …`.
 
 ## Nova feature
 
 - Pasta: `specs/features/NNN-nome-curto/` (NNN incremental).
+- Branch git alinhada: `{short}/TT-NNN-nome-curto` (ver `specs/git-workflow.md`).
 - Copiar de `specs/templates/`.
 - Atualizar status: `draft` → `ready` → `done`.
 

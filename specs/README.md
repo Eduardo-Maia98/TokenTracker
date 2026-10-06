@@ -10,6 +10,7 @@ Este diretório fica fora de `src/` — processo e produto separados do código.
 | --- | --- |
 | [`constitution.md`](./constitution.md) | Regras permanentes do projeto |
 | [`architecture.md`](./architecture.md) | **Mapa visual** Clean Arch + MVVM + pastas |
+| [`git-workflow.md`](./git-workflow.md) | **Branch / commit / PR** (`emaia/TT-001-…`) |
 | [`product-brief.md`](./product-brief.md) | Visão do produto / MVP |
 | `features/001-.../` | Spec → plan → tasks da feature atual |
 | `templates/` | Modelos para novas features |
@@ -18,9 +19,10 @@ Fora de `specs/`, o agente também segue:
 
 | Caminho | Papel |
 | --- | --- |
-| `.cursor/rules/` | Padrões de código (sempre / por arquivo) |
+| `.cursor/rules/` | Padrões de código e git (sempre / por arquivo) |
 | `.cursor/skills/tdd/` | Ritual red → green → refactor |
 | `.cursor/skills/sdd-feature/` | Como abrir/avançar uma feature SDD |
+| `.cursor/skills/git-branch-pr/` | Branch + commit + PR no padrão TT |
 | `AGENTS.md` | Regras Expo (SDK, Router, EAS) |
 
 ## Fluxo
@@ -34,6 +36,7 @@ constitution → product-brief → spec → plan → tasks → implement (TDD no
 - Ambiente (sem UI): *“Configure o ambiente para `001-cursor-token-progress` sem alterar layout…”*
 - Planejar / tasks / implementar: cite a pasta em `specs/features/…`
 - TDD: *“Implemente com TDD”* (usa a skill `tdd`)
+- Git: *“Crie a branch, commit e PR no padrão TT”* (usa `git-branch-pr`)
 
 ## Próximo passo
 

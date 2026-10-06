@@ -29,12 +29,13 @@ Princípios permanentes. Toda feature, plan e implementação deve respeitar ist
 
 11. **SDD primeiro**: não implementar feature sem `spec.md` clara; não codificar sem `plan.md` + `tasks.md` quando a feature for além de scaffolding.
 12. **TDD no domain** (e na lógica de ViewModel quando fizer sentido): red → green → refactor. Ver skill `.cursor/skills/tdd`.
-13. Antes de declarar tarefa pronta: `npx tsc --noEmit` e `npm test` (quando houver testes tocados).
-14. **Mobile-first** e cross-platform (iOS / Android; web só se a feature pedir).
-15. Preferir módulos Expo oficiais a libs third-party quando houver equivalente.
-16. Segredos nunca no git: usar env / SecureStore; documentar variáveis em `.env.example`.
+13. **Git**: branches `{short}/TT-{NNN}-{slug}`, commits/PRs `{type}(TT-NNN): …` — ver [`git-workflow.md`](./git-workflow.md) e skill `.cursor/skills/git-branch-pr`.
+14. Antes de declarar tarefa pronta: `npx tsc --noEmit` e `npm test` (quando houver testes tocados).
+15. **Mobile-first** e cross-platform (iOS / Android; web só se a feature pedir).
+16. Preferir módulos Expo oficiais a libs third-party quando houver equivalente.
+17. Segredos nunca no git: usar env / SecureStore; documentar variáveis em `.env.example`.
 
 ## Restrições da fase atual
 
-17. **Não alterar layout / UI** até a feature explicitamente liberar.
-18. Mudanças devem ser mínimas e alinhadas à spec — sem refactors oportunistas.
+18. **Não alterar layout / UI** até a feature explicitamente liberar.
+19. Mudanças devem ser mínimas e alinhadas à spec — sem refactors oportunistas.

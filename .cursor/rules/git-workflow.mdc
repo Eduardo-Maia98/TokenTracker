@@ -1,0 +1,33 @@
+---
+description: Branch, commit e PR — padrão emaia/TT-NNN-slug e type(TT-NNN)
+alwaysApply: true
+---
+
+# Git workflow
+
+Fonte: `specs/git-workflow.md`.
+
+## Branch
+
+```text
+{short}/TT-{NNN}-{kebab-slug}
+```
+
+Ex.: `emaia/TT-001-initial-router-config`  
+Short names na tabela de `specs/git-workflow.md` (default local: `emaia`).
+
+## Commit e título de PR
+
+```text
+{type}(TT-NNN): {resumo curto}
+```
+
+Tipos: `feat` | `fix` | `chore` | `docs` | `test` | `refactor` | `ci` | `perf`.
+
+Ex.: `fix(TT-001): Initial router config`
+
+## Comportamento do agente
+
+- Nova feature → criar branch nesse padrão **antes** de mudanças grandes (se o usuário pedir branch/PR, ou se for o fluxo combinado).
+- Commit só quando o usuário pedir; mensagem no formato acima.
+- PR: mesmo formato no `--title`; base `main`; não incluir arquivos não relacionados.
