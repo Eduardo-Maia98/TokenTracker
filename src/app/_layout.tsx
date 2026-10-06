@@ -7,7 +7,9 @@ import { QueryProvider } from '@/presentation/providers/query-provider';
 export default function RootLayout() {
   return (
     <QueryProvider>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+      </Stack>
     </QueryProvider>
   );
 }
