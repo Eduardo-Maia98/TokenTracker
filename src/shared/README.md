@@ -1,1 +1,1 @@
-Helpers sem regra de negócio.
+Helpers sem regra de negócio (ex.: `env.ts`).

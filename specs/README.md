@@ -12,7 +12,8 @@ Este diretório fica fora de `src/` — processo e produto separados do código.
 | [`architecture.md`](./architecture.md) | **Mapa visual** Clean Arch + MVVM + pastas |
 | [`git-workflow.md`](./git-workflow.md) | **Branch / commit / PR** (`emaia/TT-001-…`) |
 | [`product-brief.md`](./product-brief.md) | Visão do produto / MVP |
-| `features/001-.../` | Spec → plan → tasks da feature atual |
+| `features/001-.../` | Spec → plan → tasks (tokens Cursor) |
+| `features/002-configure-libraries/` | Axios, Async Storage, NativeWind, TanStack Query |
 | `templates/` | Modelos para novas features |
 
 Fora de `specs/`, o agente também segue:

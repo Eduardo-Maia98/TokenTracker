@@ -46,17 +46,21 @@ flowchart TB
 
   subgraph data [Data]
     Repo["Repository implementations"]
-    Api["API clients / adapters"]
-    Store["SecureStore / cache"]
+    Services["services/ (Axios namespaces)"]
+    Queries["queries/ + mutations/"]
+    Store["AsyncStorage / SecureStore"]
   end
 
   View -->|"observa estado / eventos"| VM
   VM -->|"chama"| UseCase
   UseCase --> Entity
   UseCase -->|"depende de"| Port
+  VM -->|"useQuery / useMutation"| Queries
+  Queries --> Services
   Repo -.->|"implementa"| Port
-  Repo --> Api
+  Repo --> Services
   Repo --> Store
+  Services --> Store
 ```
 
 ### MVVM no app
@@ -90,7 +94,7 @@ Usuário toca na tela
 ```text
 src/
 ├── app/                      # SOMENTE rotas (Expo Router)
-│   ├── _layout.tsx
+│   ├── _layout.tsx           # providers (Query) + import global.css
 │   └── ...
 ├── domain/                   # Coração do app (testável sem UI)
 │   └── tokens/
@@ -99,10 +103,21 @@ src/
 │       └── ports/
 │           └── token-usage-repository.ts
 ├── data/                     # Implementações concretas
+│   ├── http/
+│   │   └── client.ts         # instância Axios
+│   ├── services/             # requests por domínio (namespaces)
+│   │   ├── conect.ts         # namespace Conect → get/put/patch/del/…
+│   │   └── index.ts
+│   ├── queries/              # TanStack Query — GET
+│   ├── mutations/            # TanStack Query — PUT / PATCH / DELETE (/ POST)
+│   ├── storage/
+│   │   └── async-storage.ts  # wrapper Async Storage (não sensível)
 │   └── tokens/
 │       ├── cursor-token-usage-repository.ts
 │       └── cursor-api-client.ts
 ├── presentation/             # UI + ViewModels
+│   ├── providers/
+│   │   └── query-provider.tsx
 │   ├── viewmodels/
 │   │   └── use-cursor-token-progress.ts
 │   └── components/
@@ -110,6 +125,21 @@ src/
 └── shared/                   # utilitários sem regra de negócio
     └── env.ts
 ```
+
+### HTTP + TanStack Query (padrão)
+
+```text
+ViewModel
+   → data/queries/*     (GET / useQuery)
+   → data/mutations/*   (PUT | PATCH | DELETE | POST / useMutation)
+        → data/services/conect.ts  (namespace Conect + Axios)
+             → data/http/client.ts
+```
+
+- **Services**: um arquivo por API/domínio; exportam `namespace` com métodos tipados.
+- **Queries**: só leitura (GET).
+- **Mutations**: escritas; invalidam query keys no sucesso.
+- Telas **não** importam Axios direto.
 
 Dependência **só para dentro/baixo**:
 
@@ -125,7 +155,9 @@ app / presentation  →  domain  ←  data
 | --- | --- |
 | Calculando `% consumido` | `domain/` |
 | Definindo `TokenUsage` | `domain/` |
-| Chamando API / lendo env / SecureStore | `data/` |
+| Chamando API / lendo env / SecureStore / AsyncStorage | `data/` (`http/`, `services/`, `storage/`) |
+| Hook TanStack Query (GET) | `data/queries/` |
+| Hook TanStack Mutation (PUT/PATCH/DELETE) | `data/mutations/` |
 | Expondo `percent`, `isLoading`, `refresh()` para a tela | `presentation/viewmodels/` |
 | JSX, estilos, progress bar | `app/` ou `presentation/components/` |
 | Spec / plan / tasks | `specs/` (não em `src/`) |

@@ -13,7 +13,8 @@ Resumo:
 src/app/            → só rotas
 src/domain/         → regras puras + ports (TDD aqui)
 src/data/           → API / storage / adapters
-src/presentation/   → ViewModels + componentes
+  http/ · services/ · queries/ · mutations/ · storage/
+src/presentation/   → ViewModels + providers + componentes
 src/shared/         → utils sem negócio
 specs/              → SDD (não é código do app)
 ```
