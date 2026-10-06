@@ -18,7 +18,7 @@ App mobile (Expo) que **trackeia tokens disponíveis** de contas conectadas e mo
 
 ## Princípio de evolução
 
-Uma feature por vez, sempre via pasta em `sdd/features/NNN-nome/` com spec → plan → tasks → implement.
+Uma feature por vez, sempre via pasta em `specs/features/NNN-nome/` com spec → plan → tasks → implement.
 
 ## Feature inicial
 

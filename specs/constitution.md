@@ -11,18 +11,30 @@ Princípios permanentes. Toda feature, plan e implementação deve respeitar ist
 ## Stack e estrutura
 
 4. **Expo managed workflow** (SDK do projeto). Sem pastas `ios/` / `android/` editadas à mão — CNG via `app.json` / plugins.
-5. **Expo Router** para navegação. Rotas em `src/app/`. Código de domínio, hooks, utils e componentes **fora** de `src/app/`.
+5. **Expo Router** para navegação. Rotas em `src/app/`. Código de domínio, data, presentation e shared **fora** de `src/app/`.
 6. **TypeScript** com `strict: true`. Preferir tipagem explícita nas fronteiras (API, storage, env).
 7. Alias `@/*` aponta para `src/*`. Preferir imports `@/...`.
 
+## Arquitetura (Clean Architecture + MVVM)
+
+8. Camadas e dependências conforme [`architecture.md`](./architecture.md):
+   - `domain/` — regras puras (sem React, sem I/O).
+   - `data/` — APIs, storage, adapters.
+   - `presentation/` — ViewModels (hooks) + componentes.
+   - `app/` — só rotas / composição de telas.
+9. **MVVM**: View observa ViewModel; ViewModel chama use cases do domain; data implementa ports do domain.
+10. Dependência: presentation → domain ← data. Domain **nunca** importa data/presentation/React Native.
+
 ## Qualidade e processo
 
-8. **SDD primeiro**: não implementar feature sem `spec.md` clara; não codificar sem `plan.md` + `tasks.md` quando a feature for além de scaffolding.
-9. **Mobile-first** e cross-platform (iOS / Android; web só se a feature pedir).
-10. Preferir módulos Expo oficiais a libs third-party quando houver equivalente.
-11. Segredos nunca no git: usar env / SecureStore; documentar variáveis em `.env.example`.
+11. **SDD primeiro**: não implementar feature sem `spec.md` clara; não codificar sem `plan.md` + `tasks.md` quando a feature for além de scaffolding.
+12. **TDD no domain** (e na lógica de ViewModel quando fizer sentido): red → green → refactor. Ver skill `.cursor/skills/tdd`.
+13. Antes de declarar tarefa pronta: `npx tsc --noEmit` e `npm test` (quando houver testes tocados).
+14. **Mobile-first** e cross-platform (iOS / Android; web só se a feature pedir).
+15. Preferir módulos Expo oficiais a libs third-party quando houver equivalente.
+16. Segredos nunca no git: usar env / SecureStore; documentar variáveis em `.env.example`.
 
 ## Restrições da fase atual
 
-12. **Não alterar layout / UI** até a feature explicitamente liberar (próximo passo após SDD: configurar ambiente apenas).
-13. Mudanças devem ser mínimas e alinhadas à spec — sem refactors oportunistas.
+17. **Não alterar layout / UI** até a feature explicitamente liberar.
+18. Mudanças devem ser mínimas e alinhadas à spec — sem refactors oportunistas.

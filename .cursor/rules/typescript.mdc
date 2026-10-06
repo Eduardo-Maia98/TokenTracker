@@ -1,0 +1,24 @@
+---
+description: Padrões TypeScript do TokenTracker
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# TypeScript
+
+- `strict` ligado. Evitar `any`; preferir `unknown` + narrowing.
+- Tipar fronteiras: respostas de API, env, storage, props públicas.
+- Preferir `type` ou `interface` no domain; exportar tipos do módulo dono.
+- Imports com alias `@/` (ex.: `@/domain/tokens/types`).
+- Funções de domínio: puras, testáveis, nomes claros (`calculateConsumedPercent`).
+- Tratar erros com tipos/mensagens úteis; não engolir `catch` vazio.
+
+```ts
+// ❌
+catch (e) {}
+
+// ✅
+catch (e) {
+  throw new Error('Failed to load Cursor usage', { cause: e });
+}
+```

@@ -1,0 +1,28 @@
+---
+description: MVVM — View, ViewModel e Model separados
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# MVVM
+
+| Papel | Responsabilidade | Onde |
+| --- | --- | --- |
+| Model | Tipos + regras + ports | `src/domain/` |
+| ViewModel | Estado UI + ações | `src/presentation/viewmodels/` |
+| View | Render / eventos | `src/app/`, `src/presentation/components/` |
+
+## Regras
+
+- View **não** contém regra de negócio (ex.: fórmula de %).
+- ViewModel expõe dados prontos para UI (`percent`, `isLoading`, `error`, `refresh`).
+- ViewModel chama use cases / domain; não espalha `fetch` na tela.
+- Nome de hooks ViewModel: `use-*.ts` (ex.: `use-cursor-token-progress.ts`).
+
+```tsx
+// ✅ View só observa
+const { percent, isLoading, refresh } = useCursorTokenProgress();
+
+// ❌ View não calcula cota
+const percent = (used / limit) * 100;
+```

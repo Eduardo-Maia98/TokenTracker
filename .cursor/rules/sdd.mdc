@@ -1,0 +1,12 @@
+---
+description: SDD leve — sempre seguir specs/ antes de implementar
+alwaysApply: true
+---
+
+# SDD
+
+- Fonte da verdade: `specs/constitution.md`, `specs/architecture.md`, feature em `specs/features/`.
+- Ordem: **spec → plan → tasks → código**. Não pule etapas em features reais.
+- Não invente requisitos fora da spec; peça clarificação.
+- Não altere layout/UI enquanto a spec/fase atual bloquear.
+- Ao terminar: alinhar implementação aos critérios de aceite da spec.
