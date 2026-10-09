@@ -10,6 +10,15 @@ export type CursorUsageSummaryDto = {
   membershipType?: string;
   individualMembershipType?: string;
   plan?: string;
+  /** Paid / overall API usage percent (root). */
+  apiPercentUsed?: number;
+  individualUsage?: {
+    plan?: {
+      /** Auto / included plan usage percent. */
+      apiPercentUsed?: number;
+      autoPercentUsed?: number;
+    };
+  };
 };
 
 /**

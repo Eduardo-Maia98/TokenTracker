@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { cursorAccountRepository } from '@/data/cursor/cursor-account-repository';
 import { cursorAccountQueryKey } from '@/data/queries/use-cursor-account-query';
+import { cursorUsageQueryKey } from '@/data/queries/use-cursor-usage-query';
 import { connectWithSessionToken } from '@/domain/cursor-account/connect-with-session-token';
 import { disconnect } from '@/domain/cursor-account/disconnect';
 
@@ -16,6 +17,7 @@ export function useConnectCursorMutation() {
       connectWithSessionToken(cursorAccountRepository, rawToken),
     onSuccess: (account) => {
       queryClient.setQueryData(cursorAccountQueryKey, account);
+      void queryClient.invalidateQueries({ queryKey: cursorUsageQueryKey });
     },
   });
 }
@@ -30,6 +32,7 @@ export function useDisconnectCursorMutation() {
     mutationFn: () => disconnect(cursorAccountRepository),
     onSuccess: () => {
       queryClient.setQueryData(cursorAccountQueryKey, null);
+      queryClient.removeQueries({ queryKey: cursorUsageQueryKey });
     },
   });
 }

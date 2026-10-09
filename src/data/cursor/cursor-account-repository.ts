@@ -1,9 +1,8 @@
+import { CURSOR_SESSION_TOKEN_KEY } from '@/data/cursor/session-token-key';
 import { CursorApi } from '@/data/services/cursor';
 import { SecureStorage } from '@/data/storage/secure-storage';
 import type { CursorAccountRepository } from '@/domain/cursor-account/ports/cursor-account-repository';
 import type { CursorAccount } from '@/domain/cursor-account/types';
-
-const SESSION_TOKEN_KEY = 'cursor_workos_session_token';
 
 function resolvePlan(summary: {
   membershipType?: string;
@@ -23,15 +22,15 @@ function resolvePlan(summary: {
  */
 export const cursorAccountRepository: CursorAccountRepository = {
   async saveSessionToken(token: string): Promise<void> {
-    await SecureStorage.setString(SESSION_TOKEN_KEY, token);
+    await SecureStorage.setString(CURSOR_SESSION_TOKEN_KEY, token);
   },
 
   async getSessionToken(): Promise<string | null> {
-    return SecureStorage.getString(SESSION_TOKEN_KEY);
+    return SecureStorage.getString(CURSOR_SESSION_TOKEN_KEY);
   },
 
   async clearSessionToken(): Promise<void> {
-    await SecureStorage.remove(SESSION_TOKEN_KEY);
+    await SecureStorage.remove(CURSOR_SESSION_TOKEN_KEY);
   },
 
   async fetchAccount(sessionToken: string): Promise<CursorAccount> {

@@ -7,3 +7,4 @@
  */
 
 export { cursorAccountQueryKey, useCursorAccountQuery } from '@/data/queries/use-cursor-account-query';
+export { cursorUsageQueryKey, useCursorUsageQuery } from '@/data/queries/use-cursor-usage-query';
