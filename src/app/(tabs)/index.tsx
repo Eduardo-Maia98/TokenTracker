@@ -99,8 +99,9 @@ export default function ConnectScreen() {
 
       {status === 'connected' ? (
         <Pressable
-          className="items-center rounded-lg bg-neutral-900 px-4 py-3 disabled:opacity-50"
+          className="items-center rounded-lg bg-neutral-900 px-4 py-3"
           disabled={busy}
+          style={({ pressed }) => [{ opacity: pressed || busy ? 0.6 : 1 }]}
           onPress={() => {
             void onDisconnect();
           }}>
@@ -112,8 +113,14 @@ export default function ConnectScreen() {
         </Pressable>
       ) : (
         <Pressable
-          className="items-center rounded-lg bg-neutral-900 px-4 py-3 disabled:opacity-50"
+          className="items-center rounded-lg bg-neutral-900 px-4 py-3"
           disabled={busy || token.trim().length === 0}
+          style={({ pressed }) => [
+            {
+              opacity:
+                pressed || busy || token.trim().length === 0 ? 0.6 : 1,
+            },
+          ]}
           onPress={() => {
             void onConnect();
           }}>
